@@ -1,0 +1,226 @@
+.principal-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-color);
+  font-family: "Poppins-SemiBold";
+  height: 150px;
+}
+.principal-navbar .bars-solid {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  row-gap: 12px;
+}
+.principal-navbar .bars-solid div {
+  width: 60px;
+  height: 6px;
+  background: var(--third-color);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.principal-navbar .bars-solid div:nth-child(1) {
+  animation: bar1RevAnim 0.3s ease-in-out forwards;
+}
+.principal-navbar .bars-solid div:nth-child(3) {
+  animation: bar3RevAnim 0.3s ease-in-out forwards;
+}
+.principal-navbar .bars-solid.active div:nth-child(2) {
+  transform: scale(0);
+}
+.principal-navbar .bars-solid.active div:nth-child(1) {
+  animation: bar1Anim 0.3s ease-in-out forwards;
+}
+.principal-navbar .bars-solid.active div:nth-child(3) {
+  animation: bar3Anim 0.3s ease-in-out forwards;
+}
+.principal-navbar .ul-style {
+  color: var(--third-color);
+  position: fixed;
+  top: 150px;
+  background-color: var(--primary-color);
+  width: 100%;
+  margin: 0;
+  padding: 0 3%;
+  left: -100%;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+  z-index: 30;
+}
+.principal-navbar .ul-style li:last-child {
+  padding-bottom: 8px;
+}
+.principal-navbar .ul-style.active {
+  left: 0;
+}
+.principal-navbar hr {
+  border-top: solid 2px var(--third-color);
+  border-bottom: none;
+}
+.principal-navbar button {
+  background: var(--secondary-color);
+  color: var(--third-color);
+  padding: 12px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 3%;
+  font-size: 1.2rem;
+  transition: 0.3s;
+  font-family: "poppins-SemiBold";
+}
+.principal-navbar button:hover {
+  background: rgba(71, 171, 111, 0.737254902);
+}
+@media screen and (max-width: 650px) {
+  .principal-navbar button {
+    display: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .principal-navbar .bars-solid {
+    display: none;
+  }
+  .principal-navbar .ul-style {
+    position: unset;
+    display: flex;
+    flex-direction: row;
+  }
+  .principal-navbar .ul-style li:last-child {
+    padding-bottom: 0;
+  }
+  .principal-navbar .ul-style li:hover {
+    transition: 0.3s;
+    color: var(--secondary-color);
+  }
+  .principal-navbar hr {
+    border-left: none;
+    border-right: 2px solid var(--third-color);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .principal-navbar .ul-style {
+    width: 53%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .principal-navbar .bars-solid {
+    margin-right: 5%;
+  }
+}
+
+/*animations*/
+@keyframes bar1Anim {
+  100% {
+    transform: translateY(24px) rotateZ(45deg);
+  }
+}
+@keyframes bar3Anim {
+  100% {
+    transform: translateY(-12px) rotateZ(135deg);
+  }
+}
+@keyframes bar1RevAnim {
+  0% {
+    transform: translateY(24px) rotateZ(45deg);
+  }
+  50% {
+    transform: translateY(12px) rotateZ(22deg);
+  }
+  100% {
+    transform: translateY(0) rotateZ(0);
+  }
+}
+@keyframes bar3RevAnim {
+  0% {
+    transform: translateY(-12px) rotateZ(135deg);
+  }
+  50% {
+    transform: translateY(-6px) rotateZ(67deg);
+  }
+  100% {
+    transform: translateY(0) rotateZ(0);
+  }
+}
+.submit-form-button {
+  background: var(--secondary-color);
+  color: var(--third-color);
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 3% auto 3% auto;
+  font-size: 1.2rem;
+  transition: 0.3s;
+  width: 250px;
+  border: none;
+  font-family: "poppins-SemiBold";
+}
+.submit-form-button:hover {
+  background: #2f8451;
+}
+
+.redirect-signup-button {
+  background: var(--secondary-color);
+  color: var(--third-color);
+  border: 0px;
+  font-size: 1.2rem;
+  transition: 0.3s;
+  padding: 12px 20px;
+  width: 250px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: "poppins-SemiBold";
+}
+.redirect-signup-button:hover {
+  background: #2f8451;
+}
+
+.loginForm {
+  padding-bottom: 2%;
+  margin: 3% auto;
+  max-width: 600px;
+  border: solid 5px var(--secondary-color);
+  border-radius: 15px;
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 650px) {
+  .loginForm {
+    margin: 3%;
+  }
+}
+.loginForm h1 {
+  font-family: "poppins-SemiBold";
+  text-align: center;
+}
+.loginForm form {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.loginForm form label {
+  text-align: center;
+  margin-bottom: 2%;
+  font-family: "Poppins-Medium";
+  font-size: 1.5rem;
+}
+.loginForm form .input-form-data {
+  margin-bottom: 5%;
+  padding: 5px 10px;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  border: solid 2px var(--fifth-color);
+}
+.loginForm form .input-form-data:focus {
+  box-shadow: 3px 5px 12px 5px #7d8ca3;
+}
+.loginForm p {
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: "Poppins-Medium";
+}
+
+/*# sourceMappingURL=style.css.map */

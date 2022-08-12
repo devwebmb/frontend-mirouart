@@ -1,0 +1,88 @@
+.submit-form-button {
+  background: var(--secondary-color);
+  color: var(--third-color);
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 3% auto 3% auto;
+  font-size: 1.2rem;
+  transition: 0.3s;
+  width: 250px;
+  border: none;
+  font-family: "poppins-SemiBold";
+
+  &:hover {
+    background: #2f8451;
+  }
+}
+
+.redirect-signup-button {
+  background: var(--secondary-color);
+  color: var(--third-color);
+  border: 0px;
+  font-size: 1.2rem;
+  transition: 0.3s;
+  padding: 12px 20px;
+  width: 250px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: "poppins-SemiBold";
+
+  &:hover {
+    background: #2f8451;
+  }
+}
+
+.loginForm {
+  padding-bottom: 2%;
+
+  margin: 3% auto;
+  max-width: 600px;
+  border: solid 5px var(--secondary-color);
+  border-radius: 15px;
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 650px) {
+    margin: 3%;
+  }
+
+  h1 {
+    font-family: "poppins-SemiBold";
+    text-align: center;
+  }
+
+  form {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      text-align: center;
+      margin-bottom: 2%;
+      font-family: "Poppins-Medium";
+      font-size: 1.5rem;
+    }
+
+    .input-form-data {
+      margin-bottom: 5%;
+      padding: 5px 10px;
+      font-size: 1.5rem;
+      border-radius: 5px;
+      border: solid 2px var(--fifth-color);
+
+      &:focus {
+        box-shadow: 3px 5px 12px 5px #7d8ca3;
+      }
+    }
+  }
+  p {
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: "Poppins-Medium";
+  }
+}

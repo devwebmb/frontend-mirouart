@@ -1,0 +1,168 @@
+.principal-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-color);
+  font-family: "Poppins-SemiBold";
+  height: 150px;
+
+  .bars-solid {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    row-gap: 12px;
+
+    div {
+      width: 60px;
+      height: 6px;
+      background: var(--third-color);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    div:nth-child(1) {
+      animation: bar1RevAnim 0.3s ease-in-out forwards;
+    }
+
+    div:nth-child(3) {
+      animation: bar3RevAnim 0.3s ease-in-out forwards;
+    }
+  }
+
+  .bars-solid.active {
+    div:nth-child(2) {
+      transform: scale(0);
+    }
+
+    div:nth-child(1) {
+      animation: bar1Anim 0.3s ease-in-out forwards;
+    }
+
+    div:nth-child(3) {
+      animation: bar3Anim 0.3s ease-in-out forwards;
+    }
+  }
+
+  .ul-style {
+    color: var(--third-color);
+    position: fixed;
+    top: 150px;
+    background-color: var(--primary-color);
+    width: 100%;
+    margin: 0;
+    padding: 0 3%;
+    left: -100%;
+    transition: all 0.3s;
+    font-size: 1.2rem;
+    z-index: 30;
+
+    li:last-child {
+      padding-bottom: 8px;
+    }
+  }
+
+  .ul-style.active {
+    left: 0;
+  }
+
+  hr {
+    border-top: solid 2px var(--third-color);
+    border-bottom: none;
+  }
+
+  button {
+    background: var(--secondary-color);
+    color: var(--third-color);
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 3%;
+    font-size: 1.2rem;
+    transition: 0.3s;
+      font-family: "poppins-SemiBold";
+
+
+    &:hover {
+      background: #47ab6fbc;
+    }
+
+    @media screen and (max-width: 650px) {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .bars-solid {
+      display: none;
+    }
+
+    .ul-style {
+      position: unset;
+      display: flex;
+      flex-direction: row;
+
+      li:last-child {
+        padding-bottom: 0;
+      }
+
+      li:hover {
+        transition: 0.3s;
+        color: var(--secondary-color);
+      }
+    }
+
+    hr {
+      border-left: none;
+      border-right: 2px solid var(--third-color);
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .ul-style {
+      width: 53%;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .bars-solid {
+      margin-right: 5%;
+    }
+  }
+}
+
+/*animations*/
+
+@keyframes bar1Anim {
+  100% {
+    transform: translateY(24px) rotateZ(45deg);
+  }
+}
+@keyframes bar3Anim {
+  100% {
+    transform: translateY(-12px) rotateZ(135deg);
+  }
+}
+
+@keyframes bar1RevAnim {
+  0% {
+    transform: translateY(24px) rotateZ(45deg);
+  }
+  50% {
+    transform: translateY(12px) rotateZ(22deg);
+  }
+  100% {
+    transform: translateY(0) rotateZ(0);
+  }
+}
+
+@keyframes bar3RevAnim {
+  0% {
+    transform: translateY(-12px) rotateZ(135deg);
+  }
+  50% {
+    transform: translateY(-6px) rotateZ(67deg);
+  }
+  100% {
+    transform: translateY(0) rotateZ(0);
+  }
+}
