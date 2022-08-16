@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import signup from "../../services/connexion/signup";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { connexion, deconnexion } from "../../slices/connexionStatusSlice";
 
 export default function signupform() {
   const [state, setState] = useState({
@@ -18,8 +17,7 @@ export default function signupform() {
   const createAccount = (e) => {
     e.preventDefault();
     signup(state.email, state.username, state.password).then(() => {
-      dispatch(connexion());
-      router.push("/");
+      router.push("/connexion");
     });
   };
 

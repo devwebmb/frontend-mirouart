@@ -3,12 +3,10 @@ import Link from "next/link";
 import Logo from "../../public/images/logo/logo-min.svg";
 import Image from "next/image";
 
-import { useSelector, useDispatch } from "react-redux";
-import { connexion, deconnexion } from "../../slices/connexionStatusSlice";
+import { useSelector} from "react-redux";
 
-export default function navbar() {
-  const connectStatus = useSelector((state) => state.isConnected.value);
-  const dispatch = useDispatch();
+export default function principalNavbar() {
+  const isConnected = useSelector((state) => state.isConnected.value);
 
   const [navActive, setNavActive] = useState(null);
 
@@ -45,12 +43,12 @@ export default function navbar() {
             <a href="">Publier une annonce</a>
           </li>
           <hr />
-          {connectStatus ? (
+          {isConnected ? (
             <li>
               <a href="">Mon compte</a>
             </li>
           ) : null}
-          {connectStatus ? <hr /> : null}
+          {isConnected ? <hr /> : null}
           <li>
             <Link href="/apropos">
               <a href="">&Agrave; propos</a>
@@ -59,7 +57,7 @@ export default function navbar() {
         </ul>
         <button>
           <Link href="/connexion">
-            <a>{connectStatus ? "Se déconnecter" : "Se connecter"}</a>
+            <a>{isConnected ? "Se déconnecter" : "Se connecter"}</a>
           </Link>
         </button>
       </nav>

@@ -8,8 +8,8 @@ const signup = async (email, username, password) => {
       password: password,
     })
     .then((data) => {
+      console.log(data.data.simpleUser);
       alert("Votre compte a été créé");
-      console.log(data);
     });
 };
 

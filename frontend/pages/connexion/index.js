@@ -1,13 +1,12 @@
 import React from "react";
-import Navbar from "../../componentS/navbars/navbar";
-import Login from "../../components/connexion/login";
-import Signup from "../../components/connexion/signup"
+import Navbar from "../../components/navbars/Navbar";
+import Login from "../../components/connexion/Login";
 
 export default function connexionPage() {
   return (
     <div>
       <Navbar />
-      <Signup />
+      <Login />
     </div>
   );
 }
