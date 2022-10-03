@@ -1,16 +1,16 @@
 import React from "react";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import connexionMethod from "../../services/connexion/login";
-
-import { connexion } from "../../slices/connexionStatusSlice";
-import { simpleUserId } from "../../slices/simpleUserData";
+import login from "../../service/connexion/login";
+import { connexion } from "../../feature/connexionStatusSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { setSimpleUserData } from "../../feature/simpleUserData";
 
-export default function login() {
+export default function loginForm() {
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -22,8 +22,17 @@ export default function login() {
 
   const connect = (e) => {
     e.preventDefault();
-    connexionMethod(state.email, state.password).then(() => {
+    login(state.email, state.password).then((data) => {
+      console.log(data.data.data);
       dispatch(connexion());
+      dispatch(
+        setSimpleUserData({
+          token: data.data.data.token,
+          email: data.data.data.simpleUser.email,
+          username: data.data.data.simpleUser.username,
+          simpleUserId: data.data.data.simpleUser.id,
+        })
+      );
       alert("Vous êtes connecté");
       router.push("/");
     });

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import signup from "../../services/connexion/signup";
+import signup from "../../service/connexion/signup";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 

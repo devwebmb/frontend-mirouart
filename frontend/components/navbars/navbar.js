@@ -2,13 +2,27 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "../../public/images/logo/logo-min.svg";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-import { useSelector} from "react-redux";
+import { deconnexion } from "../../feature/connexionStatusSlice";
+import { deleteSimleUserData } from "../../feature/simpleUserData";
+
+import { useSelector, useDispatch } from "react-redux";
 
 export default function principalNavbar() {
   const isConnected = useSelector((state) => state.isConnected.value);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const [navActive, setNavActive] = useState(null);
+
+  const disconnect = (e) => {
+    e.preventDefault();
+    dispatch(deconnexion());
+    dispatch(deleteSimleUserData())
+    alert("Vous êtes déconnecté");
+    router.push("/");
+  };
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -17,7 +31,7 @@ export default function principalNavbar() {
   }, []);
 
   return (
-    <div>
+    <div className="nav-container">
       <nav className="principal-navbar ">
         <div>
           <Image src={Logo} alt="" />
@@ -55,11 +69,17 @@ export default function principalNavbar() {
             </Link>
           </li>
         </ul>
-        <button>
-          <Link href="/connexion">
-            <a>{isConnected ? "Se déconnecter" : "Se connecter"}</a>
-          </Link>
-        </button>
+            {isConnected ? (
+          <button onClick={disconnect}>
+            <a>Se déconnecter</a>
+          </button>
+        ) : (
+          <button>
+            <Link href="/connexion">
+              <a>Se connecter</a>
+            </Link>
+          </button>
+        )}
       </nav>
     </div>
   );

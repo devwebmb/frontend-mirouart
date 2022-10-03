@@ -11,6 +11,10 @@ export const connexionStatusSlice = createSlice({
     },
     deconnexion: (state) => {
       state.value = false;
+      localStorage.removeItem('token-mirouart')
+      localStorage.removeItem('simpleUserUsername-mirouart')
+      localStorage.removeItem('simpleUserEmail-mirouart')
+      localStorage.removeItem('simpleUserId-mirouart')
     },
     changeStatus: (state, action) => {
       state.value += action.payload;

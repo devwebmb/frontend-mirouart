@@ -1,3 +1,7 @@
+.nav-container {
+  background: var(--primary-color);
+}
+
 .principal-navbar {
   display: flex;
   justify-content: space-between;
@@ -5,6 +9,8 @@
   background: var(--primary-color);
   font-family: "Poppins-SemiBold";
   height: 150px;
+  max-width: 1500px;
+  margin: auto;
 
   .bars-solid {
     display: flex;
@@ -79,8 +85,7 @@
     margin-right: 3%;
     font-size: 1.2rem;
     transition: 0.3s;
-      font-family: "poppins-SemiBold";
-
+    font-family: "poppins-SemiBold";
 
     &:hover {
       background: #47ab6fbc;

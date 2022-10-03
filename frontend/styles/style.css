@@ -1,3 +1,7 @@
+.nav-container {
+  background: var(--primary-color);
+}
+
 .principal-navbar {
   display: flex;
   justify-content: space-between;
@@ -5,6 +9,8 @@
   background: var(--primary-color);
   font-family: "Poppins-SemiBold";
   height: 150px;
+  max-width: 1500px;
+  margin: auto;
 }
 .principal-navbar .bars-solid {
   display: flex;
