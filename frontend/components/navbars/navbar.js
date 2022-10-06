@@ -19,7 +19,7 @@ export default function principalNavbar() {
   const disconnect = (e) => {
     e.preventDefault();
     dispatch(deconnexion());
-    dispatch(deleteSimleUserData())
+    dispatch(deleteSimleUserData());
     alert("Vous êtes déconnecté");
     router.push("/");
   };
@@ -34,7 +34,11 @@ export default function principalNavbar() {
     <div className="nav-container">
       <nav className="principal-navbar ">
         <div>
-          <Image src={Logo} alt="" />
+          <Link href={"/"}>
+            <a href="">
+              <Image src={Logo} alt="Logo du site" />
+            </a>
+          </Link>
         </div>
         <div
           className={`${navActive ? "active" : ""} bars-solid`}
@@ -59,7 +63,9 @@ export default function principalNavbar() {
           <hr />
           {isConnected ? (
             <li>
-              <a href="">Mon compte</a>
+              <Link href="/account/simpleUser">
+                <a href="">Mon compte</a>
+              </Link>
             </li>
           ) : null}
           {isConnected ? <hr /> : null}
@@ -69,7 +75,7 @@ export default function principalNavbar() {
             </Link>
           </li>
         </ul>
-            {isConnected ? (
+        {isConnected ? (
           <button onClick={disconnect}>
             <a>Se déconnecter</a>
           </button>

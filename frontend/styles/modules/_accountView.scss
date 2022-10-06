@@ -1,0 +1,30 @@
+.account-view {
+  .profil-img-container {
+    border: var(--secondary-color) 3px solid;
+    width: 150px;
+    height: 150px;
+
+    .profil-img-account {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  .account-box-min-height {
+    min-height: 90px;
+  }
+
+  .form-file-btn {
+    background: var(--secondary-color);
+    color: var(--third-color);
+    padding: 6px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 3%;
+    font-size: 1.2rem;
+    transition: 0.3s;
+
+    &:hover {
+      background: #47ab6fbc;
+    }
+  }
+}

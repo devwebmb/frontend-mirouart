@@ -8,7 +8,10 @@ import { connexion } from "../../feature/connexionStatusSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { setSimpleUserData } from "../../feature/simpleUserData";
+import {
+  setSimpleUserData,
+  setSimpleUserToken,
+} from "../../feature/simpleUserData";
 
 export default function loginForm() {
   const dispatch = useDispatch();
@@ -23,17 +26,19 @@ export default function loginForm() {
   const connect = (e) => {
     e.preventDefault();
     login(state.email, state.password).then((data) => {
-      console.log(data.data.data);
       dispatch(connexion());
       dispatch(
         setSimpleUserData({
-          token: data.data.data.token,
           email: data.data.data.simpleUser.email,
           username: data.data.data.simpleUser.username,
           simpleUserId: data.data.data.simpleUser.id,
+          profilImgUrl: data.data.data.simpleUser.profilImgUrl,
         })
       );
+      dispatch(setSimpleUserToken({ token: data.data.data.token }));
+
       alert("Vous êtes connecté");
+      
       router.push("/");
     });
   };

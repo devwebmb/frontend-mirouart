@@ -5,6 +5,6 @@ import simpleUserReducer from "../feature/simpleUserData"
 export const store = configureStore({
   reducer: {
     isConnected: connexionStatusReducer,
-    simpleUSer: simpleUserReducer
+    simpleUser: simpleUserReducer
   },
 });
