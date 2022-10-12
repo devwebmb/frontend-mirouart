@@ -38,14 +38,18 @@ export default function loginForm() {
       dispatch(setSimpleUserToken({ token: data.data.data.token }));
 
       alert("Vous êtes connecté");
-      
-      router.push("/");
+
+      if (window.location.href.indexOf("addannouncement") > -1) {
+        router.push("/announcement/addannouncement");
+      } else {
+        router.push("/");
+      }
     });
   };
 
   return (
     <div className="loginForm">
-      <h1>Se connecter</h1>
+      <h1 className="mt-3">Se connecter</h1>
       <form>
         <label htmlFor="email">Adresse mail</label>
         <input

@@ -6,9 +6,14 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Login from "../../components/connexion/Login";
+import { useRouter } from "next/router";
 
 export default function AddAnnouncement() {
+  const router = useRouter();
+
   const simpleUserData = useSelector((state) => state.simpleUser);
+  const isConnected = useSelector((state) => state.isConnected.value);
   const [displayFormFile, setDisplayFormFile] = useState(false);
 
   const [selectedFile, setSelectedFile] = useState("");
@@ -26,7 +31,6 @@ export default function AddAnnouncement() {
   const [imageUrl1, setImageUrl1] = useState(null);
   const [imageUrl2, setImageUrl2] = useState(null);
   const [imageUrl3, setImageUrl3] = useState(null);
-  // const [urlImgArray, setUrlImgArray] = useState([]);
 
   const addImageUrl = (e) => {
     e.preventDefault();
@@ -119,8 +123,9 @@ export default function AddAnnouncement() {
       .post(`http://localhost:3060/api/announcement/add`, formdata, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        alert("Votre annonce a été publiée, merci.")
+        router.push("/")
       });
   };
 
@@ -131,104 +136,71 @@ export default function AddAnnouncement() {
     }
   }, [selectedFile]);
 
-  return (
-    <div>
-      <div className="addannounce-view col-10 mx-auto my-5 d-flex flex-column flex-xl-row">
-        <div className="col-12 col-xl-6 pe-xl-5">
-          <form>
-            <label className="form-label poppins-semibold fs-4">Titre :</label>
-            <input
-              type="text"
-              className="col-12 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2  align-middle d-flex mb-3"
-              onChange={(e) => {
-                setTitle(e.currentTarget.value);
-              }}
-            />
-            <label className="form-label poppins-semibold fs-4">
-              Catégorie :
-            </label>
-            <select
-              className="col-12 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2  align-middle d-flex mb-3"
-              onChange={(e) => {
-                setCategory(e.currentTarget.value);
-              }}
-            >
-              <option selected>Choisissez votre catégorie</option>
-              <option value="Peinture">Peinture</option>
-              <option value="Dessin">Dessin</option>
-              <option value="Sculpture">Sculpture</option>
-              <option value="Autres">Autres</option>
-            </select>
-            <label className="form-label poppins-semibold fs-4">
-              Prix (en euros) :
-            </label>
-            <input
-              type="number"
-              className="col-3 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2 mb-3 align-middle d-flex"
-              onChange={(e) => {
-                setPrice(e.currentTarget.value);
-              }}
-            />
-            <label className="form-label poppins-semibold fs-4">
-              Description :
-            </label>
-            <textarea
-              className="col-12 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2  align-middle d-flex"
-              rows={5}
-              onChange={(e) => {
-                setDescription(e.currentTarget.value);
-              }}
-            />
-          </form>
-        </div>
+  if (isConnected) {
+    return (
+      <div>
+        <div className="addannounce-view col-10 mx-auto my-5 d-flex flex-column flex-xl-row">
+          <div className="col-12 col-xl-6 pe-xl-5">
+            <form>
+              <label className="form-label poppins-semibold fs-4">
+                Titre :
+              </label>
+              <input
+                type="text"
+                className="col-12 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2  align-middle d-flex mb-3"
+                onChange={(e) => {
+                  setTitle(e.currentTarget.value);
+                }}
+              />
+              <label className="form-label poppins-semibold fs-4">
+                Catégorie :
+              </label>
+              <select
+                className="col-12 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2  align-middle d-flex mb-3"
+                onChange={(e) => {
+                  setCategory(e.currentTarget.value);
+                }}
+              >
+                <option selected>Choisissez votre catégorie</option>
+                <option value="Peinture">Peinture</option>
+                <option value="Dessin">Dessin</option>
+                <option value="Sculpture">Sculpture</option>
+                <option value="Autres">Autres</option>
+              </select>
+              <label className="form-label poppins-semibold fs-4">
+                Prix (en euros) :
+              </label>
+              <input
+                type="number"
+                className="col-3 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2 mb-3 align-middle d-flex"
+                onChange={(e) => {
+                  setPrice(e.currentTarget.value);
+                }}
+              />
+              <label className="form-label poppins-semibold fs-4">
+                Description :
+              </label>
+              <textarea
+                className="col-12 py-1 account-view-box-min-height border border-2 rounded sixth-border-color ps-2  align-middle d-flex"
+                rows={5}
+                onChange={(e) => {
+                  setDescription(e.currentTarget.value);
+                }}
+              />
+            </form>
+          </div>
 
-        {!displayFormFile && (
-          <div className="col-12 col-xl-6 ps-xl-5">
-            {!imageSrc1 ? (
-              <div className="col-12 mb-4 mt-4 mt-xl-0">
-                <div className="col-12 rounded seventh-color-background add-file-container position-relative cursor-pointer">
-                  <div
-                    className="position-absolute d-flex flex-column start-50 top-50 translate-middle"
-                    onClick={() => {
-                      setDisplayFormFile(!displayFormFile);
-                    }}
-                  >
-                    <p className="poppins-regular third-color mb-2 nowrap fs-4">
-                      Ajouter une image
-                    </p>
-                    <div>
-                      <Image src={AddImageIcon}></Image>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="col-12 mb-4 mt-4 mt-xl-0">
-                <div className="col-6 rounded border border-3 add-file-container position-relative">
-                  <img
-                    src={imageSrc1}
-                    className="object-fit-cover w-100 h-100 p-1"
-                  ></img>{" "}
-                  <div
-                    className="position-absolute bottom-0 end-0 cursor-pointer trash-icon-container"
-                    onClick={deleteImg1}
-                  >
-                    <Image src={TrashIcon} width={30} height={30}></Image>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="col-12 d-flex row mx-0">
-              {!imageSrc2 ? (
-                <div
-                  className="col-xl-6 ps-0 pe-0 pe-xl-3 mb-4 mb-xl-0"
-                  onClick={() => {
-                    setDisplayFormFile(!displayFormFile);
-                  }}
-                >
+          {!displayFormFile && (
+            <div className="col-12 col-xl-6 ps-xl-5">
+              {!imageSrc1 ? (
+                <div className="col-12 mb-4 mt-4 mt-xl-0">
                   <div className="col-12 rounded seventh-color-background add-file-container position-relative cursor-pointer">
-                    <div className="position-absolute d-flex flex-column start-50 top-50 translate-middle">
+                    <div
+                      className="position-absolute d-flex flex-column start-50 top-50 translate-middle"
+                      onClick={() => {
+                        setDisplayFormFile(!displayFormFile);
+                      }}
+                    >
                       <p className="poppins-regular third-color mb-2 nowrap fs-4">
                         Ajouter une image
                       </p>
@@ -239,15 +211,15 @@ export default function AddAnnouncement() {
                   </div>
                 </div>
               ) : (
-                <div className="col-xl-6 mb-4 mt-4 mt-xl-0">
-                  <div className="col-12 rounded border border-3 add-file-container position-relative">
+                <div className="col-12 mb-4 mt-4 mt-xl-0">
+                  <div className="col-6 rounded border border-3 add-file-container position-relative">
                     <img
-                      src={imageSrc2}
+                      src={imageSrc1}
                       className="object-fit-cover w-100 h-100 p-1"
                     ></img>{" "}
                     <div
                       className="position-absolute bottom-0 end-0 cursor-pointer trash-icon-container"
-                      onClick={deleteImg2}
+                      onClick={deleteImg1}
                     >
                       <Image src={TrashIcon} width={30} height={30}></Image>
                     </div>
@@ -255,83 +227,131 @@ export default function AddAnnouncement() {
                 </div>
               )}
 
-              {!imageSrc3 ? (
-                <div
-                  className="col-xl-6 pe-0 ps-0 ps-xl-3"
-                  onClick={() => {
-                    setDisplayFormFile(!displayFormFile);
-                  }}
-                >
-                  <div className="col-12 rounded seventh-color-background add-file-container position-relative cursor-pointer">
-                    <div className="position-absolute d-flex flex-column start-50 top-50 translate-middle">
-                      <p className="poppins-regular third-color mb-2 nowrap fs-4">
-                        Ajouter une image
-                      </p>
-                      <div>
-                        <Image src={AddImageIcon}></Image>
+              <div className="col-12 d-flex row mx-0">
+                {!imageSrc2 ? (
+                  <div
+                    className="col-xl-6 ps-0 pe-0 pe-xl-3 mb-4 mb-xl-0"
+                    onClick={() => {
+                      setDisplayFormFile(!displayFormFile);
+                    }}
+                  >
+                    <div className="col-12 rounded seventh-color-background add-file-container position-relative cursor-pointer">
+                      <div className="position-absolute d-flex flex-column start-50 top-50 translate-middle">
+                        <p className="poppins-regular third-color mb-2 nowrap fs-4">
+                          Ajouter une image
+                        </p>
+                        <div>
+                          <Image src={AddImageIcon}></Image>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ) : (
-                <div className="col-xl-6 mb-4 mt-4 mt-xl-0">
-                  <div className="col-12 rounded border border-3 add-file-container position-relative">
-                    <img
-                      src={imageSrc3}
-                      className="object-fit-cover w-100 h-100 p-1"
-                    ></img>
-                    <div
-                      className="position-absolute bottom-0 end-0 cursor-pointer trash-icon-container"
-                      onClick={deleteImg3}
-                    >
-                      <Image src={TrashIcon} width={30} height={30}></Image>
+                ) : (
+                  <div className="col-xl-6 mb-4 mt-4 mt-xl-0">
+                    <div className="col-12 rounded border border-3 add-file-container position-relative">
+                      <img
+                        src={imageSrc2}
+                        className="object-fit-cover w-100 h-100 p-1"
+                      ></img>{" "}
+                      <div
+                        className="position-absolute bottom-0 end-0 cursor-pointer trash-icon-container"
+                        onClick={deleteImg2}
+                      >
+                        <Image src={TrashIcon} width={30} height={30}></Image>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+                )}
 
-        {displayFormFile && (
-          <form className="col-10 col-md-8 col-xl-4 my-5">
-            <label
-              htmlFor="formFile"
-              className="form-label poppins-regular mb-2 fs-5"
-            >
-              Choisissez une image :
-            </label>
-            <br />
-            {imageSrc && selectedFile && (
-              <Image src={imageSrc} width={80} height={80}></Image>
-            )}
-            <input
-              className="form-control mt-2"
-              type="file"
-              id="formFile"
-              onChange={(e) => {
-                setSelectedFile(e.target.files[0]);
-              }}
-            />
-            <button
-              type="submit"
-              className="btn poppins-regular form-file-btn mt-4"
-              onClick={addImageUrl}
-            >
-              Envoyer l'image
-            </button>
-          </form>
-        )}
+                {!imageSrc3 ? (
+                  <div
+                    className="col-xl-6 pe-0 ps-0 ps-xl-3"
+                    onClick={() => {
+                      setDisplayFormFile(!displayFormFile);
+                    }}
+                  >
+                    <div className="col-12 rounded seventh-color-background add-file-container position-relative cursor-pointer">
+                      <div className="position-absolute d-flex flex-column start-50 top-50 translate-middle">
+                        <p className="poppins-regular third-color mb-2 nowrap fs-4">
+                          Ajouter une image
+                        </p>
+                        <div>
+                          <Image src={AddImageIcon}></Image>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="col-xl-6 mb-4 mt-4 mt-xl-0">
+                    <div className="col-12 rounded border border-3 add-file-container position-relative">
+                      <img
+                        src={imageSrc3}
+                        className="object-fit-cover w-100 h-100 p-1"
+                      ></img>
+                      <div
+                        className="position-absolute bottom-0 end-0 cursor-pointer trash-icon-container"
+                        onClick={deleteImg3}
+                      >
+                        <Image src={TrashIcon} width={30} height={30}></Image>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {displayFormFile && (
+            <form className="col-10 col-md-8 col-xl-4 my-5">
+              <label
+                htmlFor="formFile"
+                className="form-label poppins-regular mb-2 fs-5"
+              >
+                Choisissez une image :
+              </label>
+              <br />
+              {imageSrc && selectedFile && (
+                <Image src={imageSrc} width={80} height={80}></Image>
+              )}
+              <input
+                className="form-control mt-2"
+                type="file"
+                id="formFile"
+                onChange={(e) => {
+                  setSelectedFile(e.target.files[0]);
+                }}
+              />
+              <button
+                type="submit"
+                className="btn poppins-regular form-file-btn mt-4"
+                onClick={addImageUrl}
+              >
+                Envoyer l'image
+              </button>
+            </form>
+          )}
+        </div>
+        <div className="col-10">
+          <button
+            type="submit"
+            className="btn poppins-regular form-file-btn mt-4"
+            onClick={submitAnnonce}
+          >
+            Poster l'annonce
+          </button>
+        </div>
       </div>
-      <div className="col-10">
-        <button
-          type="submit"
-          className="btn poppins-regular form-file-btn mt-4"
-          onClick={submitAnnonce}
-        >
-          Poster l'annonce
-        </button>
+    );
+  }
+
+  if (!isConnected) {
+    return (
+      <div>
+        <h1 className=" col-10 mx-auto text-center poppins-semibold my-5">
+          Veuillez vous connecter pour publier une annonce
+        </h1>
+        <Login></Login>
       </div>
-    </div>
-  );
+    );
+  }
 }
