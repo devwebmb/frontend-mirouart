@@ -34,6 +34,7 @@ li {
   --fourth-color: #4d7ea8;
   --fifth-color: #7d8ca3;
   --sixth-color: rgb(147, 147, 147);
+  --seventh-color: #c4c4c4;
 }
 
 .sixth-color {
@@ -42,6 +43,14 @@ li {
 
 .sixth-border-color {
   border-color: var(--sixth-color) !important;
+}
+
+.seventh-color-background {
+  background: var(--seventh-color);
+}
+
+.third-color {
+  color: var(--third-color);
 }
 
 /*fonts*/
@@ -77,4 +86,28 @@ li {
   cursor: pointer;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
 
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/*form button*/
+
+.form-file-btn {
+  background: var(--secondary-color);
+  color: var(--third-color);
+  padding: 6px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 3%;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.form-file-btn:hover {
+  background: #47ab6fbc;
+  color: var(--third-color);
+}

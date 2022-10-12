@@ -58,7 +58,9 @@ export default function principalNavbar() {
           </li>
           <hr />
           <li>
-            <a href="">Publier une annonce</a>
+            <Link href="/announcement/addannouncement">
+              <a href="">Publier une annonce</a>
+            </Link>
           </li>
           <hr />
           {isConnected ? (
