@@ -53,6 +53,14 @@ li {
   color: var(--third-color);
 }
 
+.secondary-color {
+  color: var(--secondary-color);
+}
+
+.sixth-color {
+  color: var(--sixth-color);
+}
+
 /*fonts*/
 
 @font-face {
@@ -92,6 +100,9 @@ li {
 
 .object-fit-cover {
   object-fit: cover;
+}
+.object-fit-contain {
+  object-fit: contain;
 }
 
 /*form button*/

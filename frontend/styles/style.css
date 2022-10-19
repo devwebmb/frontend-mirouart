@@ -256,4 +256,28 @@
   transform: translate(-10px, -5px);
 }
 
+.all-annonces-card-view .card-img-height {
+  height: 250px;
+}
+
+.pagination ul {
+  display: flex;
+  justify-content: center;
+  padding: 2% 0;
+}
+.pagination ul li {
+  list-style-type: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 2rem;
+  margin-right: 10px;
+  padding: 0 5px;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+.pagination ul .active {
+  color: var(--third-color);
+  background: var(--secondary-color);
+}
+
 /*# sourceMappingURL=style.css.map */
