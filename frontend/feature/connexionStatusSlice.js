@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { value: false};
+const initialState = { value: true};
 
 export const connexionStatusSlice = createSlice({
   name: "isConnected",
