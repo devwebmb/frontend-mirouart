@@ -102,6 +102,8 @@ export default function AddAnnouncement() {
   const submitAnnonce = (e) => {
     e.preventDefault();
 
+    console.log(description);
+
     const formdata = new FormData();
     if (imageUrl1) {
       formdata.append("announcementImgUrl", imageUrl1);
@@ -123,7 +125,7 @@ export default function AddAnnouncement() {
       .post(`http://localhost:3060/api/announcement/add`, formdata, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then(() => {
+      .then((data) => {
         alert("Votre annonce a été publiée, merci.")
         router.push("/")
       });

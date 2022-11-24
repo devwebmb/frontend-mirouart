@@ -105,6 +105,14 @@ li {
   object-fit: contain;
 }
 
+.mh-500 {
+  max-height: 500px;
+}
+
+.h-200 {
+  height: 200px;
+}
+
 /*form button*/
 
 .form-file-btn {
