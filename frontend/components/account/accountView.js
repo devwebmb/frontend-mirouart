@@ -119,14 +119,17 @@ export default function accountView() {
               </span>
             </div>
           </Link>
-          <div className="d-flex col-10 col-md-6 col-xl-3 mx-auto border border-2 ps-4 py-3 rounded sixth-border-color my-4  account-box-min-height cursor-pointer">
-            <div className="col-3 d-flex">
-              <Image src={AnnouncementIcon}></Image>
+          <Link href={"/account/simpleUser/annonces"}>
+            <div className="d-flex col-10 col-md-6 col-xl-3 mx-auto border border-2 ps-4 py-3 rounded sixth-border-color my-4  account-box-min-height cursor-pointer">
+              <div className="col-3 d-flex">
+                <Image src={AnnouncementIcon}></Image>
+              </div>
+              <span className="col-9 fs-3 poppins-semibold align-middle">
+                Mes annonces
+              </span>
             </div>
-            <span className="col-9 fs-3 poppins-semibold align-middle">
-              Mes annonces
-            </span>
-          </div>
+          </Link>
+
           <div className="d-flex col-10 col-md-6 col-xl-3 mx-auto border border-2 ps-4 py-3 rounded sixth-border-color my-4 account-box-min-height cursor-pointer">
             <div className="col-3 d-flex">
               <Image src={InboxIcon}></Image>
